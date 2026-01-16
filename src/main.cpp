@@ -34,13 +34,13 @@ int32_t main() {
                      0x008080, 0x00FFFF, 0x0000FF, 0x4B0082, 0x800080, 0xFF1493,
                      0xFF69B4, 0xFA8072);
 
-    Window window(log, "Faith: Heaven's Gate", 1280, 720, _default);
+    Window window(log, "Heaven's Gate", 1280, 720, _default);
     if (!window) exit(1);
 
     const uint64_t ticks_per_15_fps = (1000 / 15);
     uint64_t       ticks_now, ticks_last_frame = SDL_GetTicks();
 
-    // position of cross
+    // position of cube
     int32_t x_pos = 20, y_pos = 20;
 
     do {
@@ -49,19 +49,17 @@ int32_t main() {
         if ((ticks_now - ticks_last_frame) >= ticks_per_15_fps) {
             window.clear(Palette::BLACK);
 
-            // simple code to make a moving cross
-            for (uint32_t x = 0; x < 30; x++) {
-                for (uint32_t y = 0; y < 8; y++) {
-                    window.set(x + x_pos, y + y_pos + 10, Palette::ORANGE);
-                }
-            }
-            for (uint32_t x = 0; x < 8; x++) {
-                for (uint32_t y = 0; y < 45; y++) {
-                    window.set(x + x_pos + 11, y + y_pos, Palette::ORANGE);
-                }
-            }
-            if (y_pos++ >= 135) y_pos = -45;
-            if ((x_pos += 2) >= 240) x_pos = -30;
+			for (uint32_t x = 0; x <= 10; x++) {
+				window.set(x + x_pos, y_pos, Palette::ORANGE);
+				window.set(x + x_pos, y_pos + 10, Palette::ORANGE);
+			}
+			for (uint32_t y = 0; y <= 10; y++) {
+				window.set(x_pos, y_pos + y, Palette::ORANGE);
+				window.set(x_pos + 10, y_pos + y, Palette::ORANGE);
+			}
+
+            if (y_pos++ >= 180) y_pos = -10;
+            if ((x_pos++) >= 320) x_pos = -10;
 
             window.draw();
             ticks_last_frame = ticks_now;

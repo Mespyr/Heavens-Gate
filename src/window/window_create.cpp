@@ -59,21 +59,21 @@ bool Window::create_scanline_texture() {
     SDL_SetRenderDrawColor(renderer.get(), 0xFF, 0xFF, 0xFF, 0x00);
     SDL_RenderFillRect(renderer.get(), NULL);
     SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0x20);
-    uint8_t s = 0;
-    uint8_t alpha = 0x20;
+    // uint8_t s = 0;
+    // uint8_t alpha = 0x20;
     for (uint32_t i = 0; i < SCANLINE_HEIGHT; i += 2) {
-        switch (s++) {
-        case 0:
-            SDL_SetRenderDrawColor(renderer.get(), 0xFF, 0, 0, alpha);
-            break;
-        case 1:
-            SDL_SetRenderDrawColor(renderer.get(), 0, 0xFF, 0, alpha);
-            break;
-        default:
-            SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0xFF, alpha);
-            s = 0;
-            break;
-        }
+        // switch (s++) {
+        // case 0:
+        //     SDL_SetRenderDrawColor(renderer.get(), 0xFF, 0, 0, alpha);
+        //     break;
+        // case 1:
+        //     SDL_SetRenderDrawColor(renderer.get(), 0, 0xFF, 0, alpha);
+        //     break;
+        // default:
+        //     SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0xFF, alpha);
+        //     s = 0;
+        //     break;
+        // }
         SDL_RenderLine(renderer.get(), 0, i, SCANLINE_WIDTH, i);
     }
     // reset renderer target, now ready to draw frames
